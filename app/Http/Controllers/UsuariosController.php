@@ -70,7 +70,7 @@ class UsuariosController extends Controller
 
             if(Auth::attempt($credenciais)){
                 session()->regenerate();
-                dd(Auth::user());
+                // dd(Auth::user());
                 return redirect()->route('home');
             }else{
 
@@ -82,7 +82,8 @@ class UsuariosController extends Controller
 
     public function logout()
     {
-        session()->forget('username');
+        // session()->forget('username');
+        Auth::logout();
         return redirect()->route('home');
     }
 }
