@@ -58,3 +58,13 @@ Route::get('/email/verify/{id}/{hash}', function(EmailVerificationRequest $reque
     $request->fulfill();
     return redirect()->route('home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('/profile', [UsuariosController::class, 'profile'])->name('usuarios.perfil')->middleware('auth');
+
+Route::get('/profile/edit', [UsuariosController::class, 'edit'])->name('usuarios.editar')->middleware('auth');
+
+Route::post('/profile/edit', [UsuariosController::class, 'alterar'])->name('usuarios.alterar')->middleware('auth');
+
+Route::get('/profile/password', [UsuariosController::class, 'password'])->name('usuarios.senha')->middleware('auth');
+
+Route::post('/profile/password', [UsuariosController::class, 'senha'])->name('usuarios.password')->middleware('auth');

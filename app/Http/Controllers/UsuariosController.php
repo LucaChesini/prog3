@@ -92,4 +92,53 @@ class UsuariosController extends Controller
         Auth::logout();
         return redirect()->route('home');
     }
+
+    public function profile(){
+        return view('usuarios.perfil', ['pagina' => 'usuarios']);
+    }
+
+    public function edit(){
+        return view('usuarios.edit', ['pagina' => 'usuarios']);
+    }
+
+    public function alterar(Request $form){
+        $usuario = Usuario::where('id', Auth::user()->id)->first();
+
+        $validate = $form->validate([
+            'name' => ['required'],
+            'email' => ['required']
+        ]);
+
+        $usuario->name = $form->name;
+        $usuario->email = $form->email;
+
+        $usuario->save();
+        
+        return redirect()->route('usuarios.perfil');
+    }
+
+    public function password(){
+        return view('usuarios.password', ['pagina' => 'usuarios']);
+    }
+
+    public function senha(Request $form){
+        $usuario = Usuario::where('id', Auth::user()->id)->first();
+        
+        $validate = $form->validate([
+            'verifica' => ['required'],
+            'password' => ['required'],
+            'confirmaPassword' => ['required']
+        ]);
+
+        if(Hash::check($form->verifica, $usuario->password) && $form->password == $form->confirmaPassword){
+            $usuario->password = Hash::make($form->password);
+
+            $usuario->save();
+
+            return redirect()->route('usuarios.perfil');
+        }else{
+            return redirect()->route('home');
+        }
+
+    }
 }
