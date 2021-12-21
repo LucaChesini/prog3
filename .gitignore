@@ -12,7 +12,7 @@ public/storage
 public/hot
 storage/*.key
 storage/imagens/*
-public/img/*
+public/img
 .env
 Homestead.yaml
 Homestead.json
