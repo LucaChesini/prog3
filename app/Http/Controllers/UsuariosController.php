@@ -110,7 +110,11 @@ class UsuariosController extends Controller
         ]);
 
         $usuario->name = $form->name;
-        $usuario->email = $form->email;
+        if($usuario->email != $form->email){
+            $usuario->email = $form->email;
+            $usuario->email_verified_at = null;
+            $usuario->sendEmailVerificationNotification();
+        }
 
         $usuario->save();
         
