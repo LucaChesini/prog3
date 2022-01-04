@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProdutosController extends Controller
 {
@@ -75,6 +77,20 @@ class ProdutosController extends Controller
     public function delete(Produto $prod)
     {
         $prod->delete();
+
+        return redirect()->route('produtos');
+    }
+
+    public function cortar(Produto $prod){
+        return view('produtos.crop', ['prod' => $prod, 'pagina' => 'produtos']);
+    }
+
+    public function crop(Request $form, Produto $prod){
+        if($form->isMethod('POST')){
+            $base = Str::after($form->img, 'base64,');
+            $baseDecodificada = base64_decode($base);
+            Storage::disk('imagens')->put($prod->imagem, $baseDecodificada);
+        }
 
         return redirect()->route('produtos');
     }

@@ -28,6 +28,10 @@ Route::get('/produtos/inserir', [ProdutosController::class, 'create'])->name('pr
 
 Route::post('/produtos/inserir', [ProdutosController::class, 'insert'])->name('produtos.gravar');
 
+Route::get('/produtos/{prod}/cortar', [ProdutosController::class, 'cortar'])->name('produtos.cortar');
+
+Route::post('/produtos/{prod}/cortar', [ProdutosController::class, 'crop'])->name('produtos.crop');
+
 Route::get('/produtos/{prod}', [ProdutosController::class, 'show'])->name('produtos.show');
 
 Route::get('/produtos/{prod}/editar', [ProdutosController::class, 'edit'])->name('produtos.edit');
