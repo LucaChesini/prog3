@@ -49,6 +49,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'itens' => [
+            'driver' => 'local',
+            'root' => storage_path('itens'),
+            'url' => env('APP_URL').'/itens',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -75,7 +82,8 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path('img') => storage_path('imagens')
+        public_path('img') => storage_path('imagens'),
+        public_path('imgitens') => storage_path('itens')
     ],
 
 ];

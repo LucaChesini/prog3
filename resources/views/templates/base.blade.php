@@ -18,6 +18,7 @@
           <li><a href="{{route('home')}}" class="nav-link px-2 @if ($pagina == 'home') text-secondary @else text-white @endif">Inicial</a></li>
           <li><a href="{{route('produtos')}}" class="nav-link px-2 @if ($pagina == 'produtos') text-secondary @else text-white @endif">Produtos</a></li>
           <li><a href="/usuarios" class="nav-link px-2 @if ($pagina == 'usuarios') text-secondary @else text-white @endif">Usuários</a></li>
+          <li><a href="{{route('itens')}}" class="nav-link px-2 @if ($pagina == 'galeria') text-secondary @else text-white @endif">Trabalho Final</a></li> {{-- Link para a página da galeria --}}
         </ul>
 
         <div class="text-end">

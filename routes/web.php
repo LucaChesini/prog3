@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItensController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -74,3 +75,12 @@ Route::post('/profile/edit', [UsuariosController::class, 'alterar'])->name('usua
 Route::get('/profile/password', [UsuariosController::class, 'password'])->name('usuarios.senha')->middleware('auth');
 
 Route::post('/profile/password', [UsuariosController::class, 'senha'])->name('usuarios.password')->middleware('auth');
+
+
+Route::get('itens', [ItensController::class, 'index'])->name('itens');
+
+Route::get('/itens/inserir', [ItensController::class, 'create'])->name('itens.inserir');
+
+Route::post('/itens/inserir', [ItensController::class, 'insert'])->name('itens.gravar');
+
+Route::get('/itens/{item}', [ItensController::class, 'show'])->name('itens.show');
